@@ -22,7 +22,7 @@ export default (props = {}) => {
   const onCollapse = () => setShow(!show);
 
   const CollapsableNavItem = (props) => {
-    const { eventKey, title, icon, children = null } = props;
+    const { eventKey, title, style, icon, children = null } = props;
     const defaultKey = pathname.indexOf(eventKey) !== -1 ? eventKey : "";
 
     return (
@@ -31,7 +31,7 @@ export default (props = {}) => {
           <Accordion.Button as={Nav.Link} className="d-flex justify-content-between align-items-center">
             <span>
               <span className="sidebar-icon"><FontAwesomeIcon icon={icon} /> </span>
-              <span className="sidebar-text">{title}</span>
+              <span style={style} className="sidebar-text">{title}</span>
             </span>
           </Accordion.Button>
           <Accordion.Body className="multi-level">
@@ -45,7 +45,7 @@ export default (props = {}) => {
   };
 
   const NavItem = (props) => {
-    const { title, link, external, target, icon, image, badgeText, badgeBg = "secondary", badgeColor = "primary" } = props;
+    const { title, link, external, target, style, icon, image, badgeText, badgeBg = "secondary", badgeColor = "primary" } = props;
     const classNames = badgeText ? "d-flex justify-content-start align-items-center justify-content-between" : "";
     const navItemClassName = link === pathname ? "active" : "";
     const linkProps = external ? { href: link } : { as: Link, to: link };
@@ -57,7 +57,7 @@ export default (props = {}) => {
             {icon ? <span className="sidebar-icon"><FontAwesomeIcon icon={icon} /> </span> : null}
             {image ? <Image src={image} width={20} height={20} className="sidebar-icon svg-icon" /> : null}
 
-            <span className="sidebar-text">{title}</span>
+            <span style={style} className="sidebar-text">{title}</span>
           </span>
           {badgeText ? (
             <Badge pill bg={badgeBg} text={badgeColor} className="badge-md notification-count ms-2">{badgeText}</Badge>
@@ -69,7 +69,7 @@ export default (props = {}) => {
 
   return (
     <>
-      <Navbar expand={false} collapseOnSelect variant="dark" className="navbar-theme-primary px-4 d-md-none">
+      <Navbar expand={false} collapseOnSelect variant="success" className="navbar-theme-success px-4 d-md-none">
         <Navbar.Brand className="me-lg-5" as={Link} to={Routes.DashboardOverview.path}>
           <Image src={ReactHero} className="navbar-brand-light" />
         </Navbar.Brand>
@@ -87,7 +87,7 @@ export default (props = {}) => {
                 </div>
                 <div className="d-block">
                   <h6>Hi, Jane</h6>
-                  <Button as={Link} variant="secondary" size="xs" to={Routes.Signin.path} className="text-dark">
+                  <Button as={Link} variant="success" size="xs" to={Routes.Signin.path} className="text-dark">
                     <FontAwesomeIcon icon={faSignOutAlt} className="me-2" /> Sign Out
                   </Button>
                 </div>
@@ -104,7 +104,7 @@ export default (props = {}) => {
               <NavItem title="Settings" icon={faCog} link={Routes.Settings.path} />
 
               <CollapsableNavItem eventKey="tables/" title="Tables" icon={faTable}>
-                <NavItem title="Bootstrap Table" link={Routes.BootstrapTables.path} />
+                <NavItem title="Bootstrap Table" style={{ color: "#00FF00" }} link={Routes.BootstrapTables.path} />
               </CollapsableNavItem>
 
               <CollapsableNavItem eventKey="examples/" title="Page Examples" icon={faFileAlt}>
